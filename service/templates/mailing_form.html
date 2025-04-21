@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} рассылку{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{% if form.instance.pk %}Редактировать{% else %}Добавить{% endif %} рассылку</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <div class="form-group mb-4">
+        <label for="id_recipients"><b>Получатели</b></label>
+        {{ form.recipients }}
+    </div>
+
+    <div class="form-group mb-4">
+        <label for="id_message"><b>Сообщение</b></label>
+        <select name="message" id="id_message" class="form-select">
+            {% for message in form.message.field.queryset %}
+                <option value="{{ message.pk }}"{% if message.pk == form.message.value %} selected{% endif %}>
+                    {{ message.subject }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group mb-4">
+        <label for="id_end_at"><b>Дата окончания рассылки</b></label>
+        <input type="datetime-local" name="end_at" id="id_end_at" class="form-control"
+               value="{{ form.end_at.value|default:'' }}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'service:mailing_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Подтверждение завершено</h4>
+            </div>
+            <div class="card-body text-center">
+                <h2>Спасибо за подтверждение своего аккаунта!</h2>
+                <p>Теперь вы можете <a href="{% url 'users:login' %}">войти</a> в систему.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

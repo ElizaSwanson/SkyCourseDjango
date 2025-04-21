@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>Ошибка подтверждения</h4>
+            </div>
+            <div class="card-body text-center">
+                <h2>Ошибка: подтверждение не удалось.</h2>
+                <p>Пожалуйста, проверьте свою ссылку для активации вашего аккаунта или обратитесь в службу поддержки.</p>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Вернуться на страницу входа</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

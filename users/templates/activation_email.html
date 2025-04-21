@@ -1,0 +1,9 @@
+{% autoescape off %}
+Здравствуйте, {{ user.email }}!
+
+Пожалуйста, активируйте свою учетную запись, пройдя по следующей ссылке:
+
+{{ activation_link }}
+
+Спасибо! С уважением, MailingManager.
+{% endautoescape %}

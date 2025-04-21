@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Список сообщений{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Список сообщений</h2>
+<a href="{% url 'service:message_create' %}" class="btn btn-success">Добавить сообщение</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Тема сообщения</th>
+            <th>Текст</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.subject|truncatechars:40 }}</td>
+            <td>{{ message.body|truncatechars:80 }}</td>
+            <td>
+                <a href="{% url 'service:message_update' message.pk %}" class="btn btn-warning">Редактировать</a>
+                <a href="{% url 'service:message_delete' message.pk %}" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
