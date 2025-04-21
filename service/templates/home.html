@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Добро пожаловать в <span
+                class="font-weight-bold">MailingManager</span></h1>
+        {% if not is_manager %}
+        <p class="text-center">Выберите один из разделов, чтобы получить доступ к необходимым функциям.</p>
+        {% else %}
+        <p class="text-center">Вы находитесь в меню менеджера рассылок.</p>
+        {% endif %}
+        <div class="row">
+            {% if not is_manager %}
+                <div class="col-md-4">
+                    <a href="{% url 'service:recipient_list' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Получатели</h5>
+                            <p class="card-text">Управление списками получателей.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'service:message_list' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Сообщения</h5>
+                            <p class="card-text">Создание и редактирование сообщений.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'service:mailing_list' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Рассылки</h5>
+                            <p class="card-text">Управление вашими рассылками.</p>
+                        </div>
+                    </a>
+                </div>
+            {% else %}
+                <div class="col-md-4">
+                    <a href="{% url 'service:mailing_list' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Рассылки</h5>
+                            <p class="card-text">Управление вашими рассылками.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'service:list_users' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Пользователи</h5>
+                            <p class="card-text">Зарегистрированные пользователи.</p>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="row mb-4 mt-5">
+            {% if not user.is_authenticated or is_manager %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Уникальные получатели</h5>
+                            <p class="card-text">{{ unique_recipients }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Всего рассылок</h5>
+                            <p class="card-text">{{ total_mailings }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Активные рассылки</h5>
+                            <p class="card-text">{{ active_mailings }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-md-4r">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Успешные попытки</h5>
+                            <p class="card-text">{{ successful_attempts }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cardt">
+                        <div class="card-body">
+                            <h5 class="card-title">Неуспешные попытки</h5>
+                            <p class="card-text">{{ failed_attempts }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Отправленные сообщения</h5>
+                            <p class="card-text">{{ sent_messages }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

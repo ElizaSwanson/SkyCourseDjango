@@ -148,11 +148,11 @@ EMAIL_HOST_USER = 'iseeallstars@yandex.ru'
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-AUTH_USER_MODEL = "users_list.Users"
+AUTH_USER_MODEL = "users.User"
 
-LOGIN_REDIRECT_URL = "catalog:product_list"
+LOGIN_REDIRECT_URL = "service:home"
 
-LOGOUT_REDIRECT_URL = "catalog:product_list"
+LOGOUT_REDIRECT_URL = "service:home"
 
 LOGIN_URL = "login"
 
@@ -160,8 +160,8 @@ CACHE_ENABLED = True
 
 if CACHE_ENABLED:
     CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://localhost:6379/1',
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': 'redis://localhost:6379/1',
+        }
     }
-}
