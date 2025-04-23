@@ -12,6 +12,7 @@ from .forms import RecipientForm, MessageForm, MailingForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 
 
 @method_decorator(cache_page(0), name="dispatch")
@@ -251,3 +252,13 @@ class UserActionView(generic.View):
             user.is_blocked = False
         user.save()
         return redirect("service:list_users")
+
+class MailListViewStatus(LoginRequiredMixin,generic.ListView):
+    model = Mailing
+    template_name = "attempts.html"
+    context_object_name = "mailing"
+
+    def get_queryset(self):
+        if self.request.user.has_perm("mailing.can_view_all_mailing_lists"):
+            return Mailing.objects.all()
+        return Mailing.objects.filter(created_by=self.request.user)

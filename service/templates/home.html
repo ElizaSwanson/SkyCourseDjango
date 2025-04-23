@@ -37,6 +37,14 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-4">
+                    <a href="{% url 'service:attempts' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Статус</h5>
+                            <p class="card-text">Просмотр статуса рассылок.</p>
+                        </div>
+                    </a>
+                </div>
             {% else %}
                 <div class="col-md-4">
                     <a href="{% url 'service:mailing_list' %}" class="card">
@@ -47,6 +55,19 @@
                     </a>
                 </div>
                 <div class="col-md-4">
+                    <a href="{% url 'service:attempts' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Рассылки</h5>
+                            <p class="card-text">Просмотр статуса</p>
+                        </div>
+                    </a>
+                <div class="col-md-4">
+                    <a href="{% url 'service:attempts' %}" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Статус</h5>
+                            <p class="card-text">Просмотр статуса рассылок.</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
                     <a href="{% url 'service:list_users' %}" class="card">
@@ -56,60 +77,8 @@
                         </div>
                     </a>
                 </div>
-            {% endif %}
-        </div>
 
-        <div class="row mb-4 mt-5">
-            {% if not user.is_authenticated or is_manager %}
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Уникальные получатели</h5>
-                            <p class="card-text">{{ unique_recipients }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Всего рассылок</h5>
-                            <p class="card-text">{{ total_mailings }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Активные рассылки</h5>
-                            <p class="card-text">{{ active_mailings }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-md-4r">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Успешные попытки</h5>
-                            <p class="card-text">{{ successful_attempts }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="cardt">
-                        <div class="card-body">
-                            <h5 class="card-title">Неуспешные попытки</h5>
-                            <p class="card-text">{{ failed_attempts }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Отправленные сообщения</h5>
-                            <p class="card-text">{{ sent_messages }}</p>
-                        </div>
-                    </div>
-                </div>
+
             {% endif %}
         </div>
     </div>

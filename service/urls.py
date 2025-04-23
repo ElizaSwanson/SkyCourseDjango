@@ -16,7 +16,7 @@ from .views import (
     MailingUpdateView,
     MailingDeleteView,
     UsersView,
-    UserActionView,
+    UserActionView, MailListViewStatus,
 )
 
 
@@ -44,7 +44,7 @@ urlpatterns = [
     path(
         "messages/delete/<int:pk>/", MessageDeleteView.as_view(), name="message_delete"
     ),
-    path("mailings/", MailingListView.as_view(), name="mailing_list"),
+    path("mailing/", MailingListView.as_view(), name="mailing_list"),
     path("mailings/create/", MailingCreateView.as_view(), name="mailing_create"),
     path(
         "mailings/update/<int:pk>/", MailingUpdateView.as_view(), name="mailing_update"
@@ -61,4 +61,5 @@ urlpatterns = [
         UserActionView.as_view(),
         name="user_action",
     ),
+    path("attempts/", MailListViewStatus.as_view(), name="attempts")
 ]
